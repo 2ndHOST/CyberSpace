@@ -1,3 +1,6 @@
+// Import configuration
+import { config } from './config.js';
+
 (function(){
   'use strict';
 
@@ -33,8 +36,8 @@
   };
 
   const BACKEND_CONFIG = {
-    URL: readJson(STORAGE_KEYS.BACKEND_URL, 'http://localhost:3000'),
-    FALLBACK_TO_DEMO: true, // Set to false to disable demo fallback
+    URL: readJson(STORAGE_KEYS.BACKEND_URL, config.BACKEND_URL),
+    FALLBACK_TO_DEMO: config.FEATURES.DEMO_FALLBACK,
   };
 
   const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
@@ -337,7 +340,7 @@
     
     // Create download link for the extension
     const downloadLink = document.createElement('a');
-    downloadLink.href = './download-extension.html';
+    downloadLink.href = config.EXTENSION_DOWNLOAD_URL;
     downloadLink.textContent = 'Download Extension ZIP';
     downloadLink.className = 'btn btn--primary';
     downloadLink.style.marginTop = '12px';

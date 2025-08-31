@@ -48,8 +48,21 @@ app.use(helmet({
   },
 }));
 
+// CORS configuration for production and development
+const corsOrigins = [
+  'http://localhost:5173', 
+  'http://localhost:3000', 
+  'chrome-extension://*',
+  'https://cyberspace-frontend.onrender.com'
+];
+
+// Add environment-specific origins
+if (process.env.CORS_ORIGIN) {
+  corsOrigins.push(process.env.CORS_ORIGIN);
+}
+
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:3000', 'chrome-extension://*'],
+  origin: corsOrigins,
   credentials: true
 }));
 
