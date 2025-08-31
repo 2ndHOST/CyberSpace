@@ -20,8 +20,9 @@ services:
         value: info
 
   # Frontend Static Site
-  - type: static
+  - type: web
     name: cyberspace-frontend
+    env: static
     plan: starter
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
